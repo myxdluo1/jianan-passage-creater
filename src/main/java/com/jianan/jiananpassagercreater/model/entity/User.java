@@ -90,6 +90,10 @@ public class User implements Serializable {
     private LocalDateTime updateTime;
 
     /**
+     * 剩余配额
+     */
+    private Integer quota;
+    /**
      * 是否删除
      */
     @Column(value = "isDelete", isLogicDelete = true)
