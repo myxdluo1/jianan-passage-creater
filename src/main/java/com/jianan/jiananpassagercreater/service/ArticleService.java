@@ -9,6 +9,8 @@ import com.jianan.jiananpassagercreater.model.vo.ArticleVO;
 import com.mybatisflex.core.paginate.Page;
 import com.mybatisflex.core.service.IService;
 
+import java.util.List;
+
 /**
  * 文章服务接口
  *
@@ -23,7 +25,7 @@ public interface ArticleService extends IService<Article> {
      * @param loginUser 当前登录用户
      * @return 任务ID
      */
-    String createArticleTask(String topic, String style, User loginUser);
+    String createArticleTask(String topic, String style,List<String> enabledImageMethods, User loginUser);
 
     /**
      * 创建文章任务（带配额检查）
@@ -34,8 +36,7 @@ public interface ArticleService extends IService<Article> {
      * @param loginUser 当前登录用户
      * @return 任务ID
      */
-    String createArticleTaskWithQuotaCheck(String topic, String style, User loginUser);
-
+    public String createArticleTaskWithQuotaCheck(String topic, String style, List<String> enabledImageMethods, User loginUser) ;
     /**
      * 根据任务ID获取文章
      *

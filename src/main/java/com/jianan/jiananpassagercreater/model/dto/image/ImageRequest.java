@@ -41,7 +41,10 @@ public class ImageRequest {
      * 图片风格描述
      */
     private String style;
-
+    /**
+     * 占位符ID，用于在正文中定位插入位置，格式：{{IMAGE_PLACEHOLDER_N}}
+     */
+    private String placeholderId;
     /**
      * 获取有效的搜索/生成参数
      * AI 生图优先使用 prompt，图库检索使用 keywords

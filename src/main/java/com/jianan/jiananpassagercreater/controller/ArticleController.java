@@ -11,6 +11,7 @@ import com.jianan.jiananpassagercreater.manager.SseEmitterManager;
 import com.jianan.jiananpassagercreater.model.dto.article.ArticleCreateRequest;
 import com.jianan.jiananpassagercreater.model.dto.article.ArticleQueryRequest;
 import com.jianan.jiananpassagercreater.model.entity.User;
+import com.jianan.jiananpassagercreater.model.enums.ArticleStyleEnum;
 import com.jianan.jiananpassagercreater.model.vo.ArticleVO;
 import com.jianan.jiananpassagercreater.service.ArticleService;
 import com.jianan.jiananpassagercreater.service.UserService;
@@ -49,17 +50,26 @@ public class ArticleController {
         ThrowUtils.throwIf(request == null, ErrorCode.PARAMS_ERROR);
         ThrowUtils.throwIf(request.getTopic() == null || request.getTopic().trim().isEmpty(),
                 ErrorCode.PARAMS_ERROR, "选题不能为空");
+        // 校验风格参数（允许为空）
+        ThrowUtils.throwIf(!ArticleStyleEnum.isValid(request.getStyle()),
+                ErrorCode.PARAMS_ERROR, "无效的文章风格");
 
         User loginUser = userService.getLoginUser(httpServletRequest);
 
-        // 创建文章任务
-        String taskId = articleService.createArticleTask(request.getTopic(), "好看",loginUser);
+        // 检查并消耗配额 + 创建文章任务（在同一事务中）
+        String taskId = articleService.createArticleTaskWithQuotaCheck(request.getTopic(), request.getStyle(), request.getEnabledImageMethods(),loginUser);
 
-        // 异步执行文章生成
-        articleAsyncService.executeArticleGeneration(taskId, request.getTopic());
+        // 异步执行文章生成（传递风格和配图方式选择）
+        articleAsyncService.executeArticleGeneration(
+                taskId,
+                request.getTopic(),
+                request.getStyle(),
+                request.getEnabledImageMethods()
+        );
 
         return ResultUtils.success(taskId);
     }
+
     /**
      * SSE 进度推送
      */

@@ -56,3 +56,7 @@ cos:
     secretKey:
     region:
     bucket:
+# Nano Banana (Gemini AI 生图) 配置
+nano-banana:
+  api-key: ${GEMINI_API_KEY:your-gemini-api-key}
+  model: gemini-3-pro-image-preview

@@ -1,4 +1,4 @@
-package com.jianan.jiananpassagercreater.ai;
+package com.jianan.jiananpassagercreater;
 
 import com.jianan.jiananpassagercreater.config.CosConfig;
 import com.jianan.jiananpassagercreater.model.dto.image.ImageData;
@@ -10,6 +10,7 @@ import com.qcloud.cos.http.HttpProtocol;
 import com.qcloud.cos.model.ObjectMetadata;
 import com.qcloud.cos.model.PutObjectRequest;
 import com.qcloud.cos.region.Region;
+
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

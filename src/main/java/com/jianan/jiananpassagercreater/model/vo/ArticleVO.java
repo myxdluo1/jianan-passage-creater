@@ -28,7 +28,10 @@ public class ArticleVO implements Serializable {
      * 任务ID
      */
     private String taskId;
-
+    /**
+     * 文章风格：tech/emotional/educational/humorous，可为空
+     */
+    private String style;
     /**
      * 用户ID
      */

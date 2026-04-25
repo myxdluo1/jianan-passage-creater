@@ -46,6 +46,10 @@ public class ArticleState implements Serializable {
      * 配图结果列表（智能体5输出）
      */
     private List<ImageResult> images;
+    /**
+     * 文章风格
+     */
+    private String style;
 
     /**
      * 标题结果
@@ -93,7 +97,25 @@ public class ArticleState implements Serializable {
         private String url;
         private String method;
         private String keywords;
-        private String description;
+        private String description; /**
+         * 占位符ID，用于在正文中定位插入位置，格式：{{IMAGE_PLACEHOLDER_N}}
+         */
+        private String placeholderId;
+
+    }
+    /**
+     * 智能体4返回结果（包含带占位符的正文和配图需求列表）
+     */
+    @Data
+    public static class Agent4Result implements Serializable {
+        /**
+         * 包含占位符的正文内容
+         */
+        private String contentWithPlaceholders;
+        /**
+         * 配图需求列表
+         */
+        private List<ImageRequirement> imageRequirements;
     }
 
     private static final long serialVersionUID = 1L;

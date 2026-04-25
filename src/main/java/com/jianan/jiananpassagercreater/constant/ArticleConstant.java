@@ -81,4 +81,5 @@ public interface ArticleConstant {
     int SVG_DEFAULT_HEIGHT = 600;
 
     // endregion
+
 }
