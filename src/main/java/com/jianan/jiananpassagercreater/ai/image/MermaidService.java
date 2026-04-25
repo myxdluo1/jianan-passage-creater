@@ -19,7 +19,6 @@ import static com.jianan.jiananpassagercreater.constant.ArticleConstant.PICSUM_U
  * Mermaid 流程图生成服务
  * 使用 mermaid-cli 将 Mermaid 代码转换为图片
  *
- * @author <a href="https://codefather.cn">编程导航学习圈</a>
  */
 @Service
 @Slf4j

@@ -1,7 +1,6 @@
 <template>
   <a-layout-footer class="footer">
-    <div class="footer-content">
-    </div>
+
   </a-layout-footer>
 </template>
 
